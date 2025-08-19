@@ -10,9 +10,4 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post('send-email')
-  send() {
-    this.appService.sendEmail();
-    return console.log("Email enviado");
-  }
 }
