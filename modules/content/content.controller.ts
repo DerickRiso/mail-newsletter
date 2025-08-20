@@ -14,4 +14,9 @@ export class ContentController {
     getBooks() {
         return this.ContentService.requestBooks();
     }
+
+    @Get('words')
+    getWords() {
+        return this.ContentService.requestWord();
+    }
 }
