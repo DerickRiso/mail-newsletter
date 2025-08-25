@@ -10,20 +10,21 @@ async function makeRequest(url: string) {
     }
 }
 
+// TODO: Criar middleware para retornar apenas os dados de uso 
 @Injectable()
 export class ContentService {
     async requestNews() {
-        const url = "https://api.nytimes.com/svc/news/v3/content/nyt/world.json?api-key="+ process.env.NYT_API_KEY;
+        const url = "https://api.nytimes.com/svc/news/v3/content/nyt/world.json?api-key=" + process.env.NYT_API_KEY;
         return makeRequest(url);
     }
 
     async requestBooks() {
-        const url = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + process.env.NYT_API_KEY;
+        const url = "https://openlibrary.org/search.json?q=the+little+prince";
         return makeRequest(url);
     }
 
     async requestWord() {
         const url = "https://api.dictionaryapi.dev/api/v2/entries/en/factory";
-        return makeRequest(url); 
+        return makeRequest(url);
     }
 }
