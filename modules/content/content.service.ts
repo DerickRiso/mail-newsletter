@@ -19,7 +19,7 @@ export class ContentService {
     }
 
     async requestBooks() {
-        const url = "https://openlibrary.org/search.json?q=the+little+prince";
+        const url = "https://ia800204.us.archive.org/fulltext/inside.php?item_id?designevaluation25clin&doc-designevaluation25clin&path/27/items/designevaluation25cc&q-%22library%20science22";
         return makeRequest(url);
     }
 
