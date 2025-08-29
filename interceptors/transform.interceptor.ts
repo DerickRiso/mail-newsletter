@@ -20,7 +20,11 @@ export class TransformNewsInterceptor implements NestInterceptor {
                 url: string
             }
 
+            // Confere se results é um array, caso não seja, se torna
             const results = Array.isArray(data.results) ? data.results : [];
+
+            //  Diferente do ForEach, map executa vários passos por execução
+            //  Para cada item do array é criado um objeto novo e passado para o array
 
             const response: News[] = results.map(item => ({
                 title: item.title || "",
@@ -29,20 +33,14 @@ export class TransformNewsInterceptor implements NestInterceptor {
                 url: item.url || ""
             }));
 
-            console.log(response);
-            console.log(response.length);
-
                 return {
                     sucess: true,
-                    data
+                    response
                 }
             })
-        )
-        
+        )   
     }
 }
-
-
 
 @Injectable()
 export class TransformWordsInterceptor implements NestInterceptor {
@@ -53,7 +51,6 @@ export class TransformWordsInterceptor implements NestInterceptor {
             definition: string;
         }
         
-
         return next.handle().pipe(
             map((data) => {
                 
@@ -61,15 +58,12 @@ export class TransformWordsInterceptor implements NestInterceptor {
                     word: "",
                     definition: ""
                 };
-                response.word = data[0].word;
-                response.definition = data[0].meanings[0].definitions[0].definition
-
-
-                console.log(response);
+                response.word = data[0].word || "";
+                response.definition = data[0].meanings[0].definitions[0].definition || "";
 
                 return {
                     sucess: true,
-                    data
+                    response
                 }
             })
         )
