@@ -10,7 +10,6 @@ async function makeRequest(url: string) {
     }
 }
 
-// TODO: Criar middleware para retornar apenas os dados de uso 
 @Injectable()
 export class ContentService {
     async requestNews() {
@@ -24,7 +23,7 @@ export class ContentService {
     }
 
     async requestWord() {
-        const url = "https://api.dictionaryapi.dev/api/v2/entries/en/factory";
+        const url = "https://api.dictionaryapi.dev/api/v2/entries/en/paper";
         return makeRequest(url);
     }
 }
