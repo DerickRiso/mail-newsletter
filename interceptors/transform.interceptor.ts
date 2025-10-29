@@ -6,33 +6,40 @@ import {
 } from "@nestjs/common";
 import { map, Observable, timestamp } from "rxjs";
 
+type News = {
+    id: number;
+    title: string,
+    abstract: string,
+    text: string,
+    url: string
+}
+
 @Injectable()
 export class TransformNewsInterceptor implements NestInterceptor {
+
+    private removeVoidData(arr: News[]): News[] {
+        return arr.filter(item => item.title !== "");
+    }
+
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 
         return next.handle().pipe(
             map((data) => {
-                type News = {
-                    id: number;
-                    title: string,
-                    abstract: string,
-                    text: string,
-                    url: string
-                }
 
                 // Confere se results é um array, caso não seja, se torna
                 const results = Array.isArray(data?.results) ? data.results : [];
 
                 //  Diferente do ForEach, map executa vários passos por execução
                 //  Para cada item do array é criado um objeto novo e passado para o array
-
-                const response: News[] = results.map((item, index: number) => ({
+                const tempResponse: News[] = results.map((item, index) => ({
                     key: index,
                     title: item.title || "",
                     abstract: item.abstract || "",
                     text: item.multimedia?.[0]?.caption || "",
                     url: item.url || ""
                 }));
+
+                const response = this.removeVoidData(tempResponse);
 
                 return {
                     sucess: true,
