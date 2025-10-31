@@ -6,7 +6,8 @@ import { LoggerMiddleware } from "../../middleware/logger.middleware";
 @Module({
     imports: [],
     controllers: [ContentController],
-    providers: [ContentService]
+    providers: [ContentService],
+    exports: [ContentService]
 })
 export class ContentModule {
     configure(consumer: MiddlewareConsumer) {

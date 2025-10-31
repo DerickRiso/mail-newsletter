@@ -5,7 +5,7 @@ import * as path from "path";
 
 @Injectable()
 export class MailService {
-    async sendEmail() {
+  async sendEmail() {
     const transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
       port: Number(process.env.MAIL_PORT),

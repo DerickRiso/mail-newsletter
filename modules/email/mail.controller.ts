@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { MailService } from './mail.service';
 
 const date = new Date()
