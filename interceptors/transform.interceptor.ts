@@ -4,15 +4,8 @@ import {
     ExecutionContext,
     CallHandler
 } from "@nestjs/common";
-import { map, Observable, timestamp } from "rxjs";
-
-type News = {
-    id: number;
-    title: string,
-    abstract: string,
-    text: string,
-    url: string
-}
+import { map, Observable } from "rxjs";
+import type { News, Word } from "modules/content/content.service";
 
 @Injectable()
 export class TransformNewsInterceptor implements NestInterceptor {
@@ -54,15 +47,10 @@ export class TransformNewsInterceptor implements NestInterceptor {
 export class TransformWordsInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 
-        type Words = {
-            word: string;
-            definition: string;
-        }
-
         return next.handle().pipe(
             map((data) => {
 
-                let response: Words = {
+                let response: Word = {
                     word: "",
                     definition: ""
                 };

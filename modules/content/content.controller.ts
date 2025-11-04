@@ -19,7 +19,7 @@ export class ContentController {
     }
 
     @Get('books')
-    @UseInterceptors(TransformBooksInterceptor)
+    //@UseInterceptors(TransformBooksInterceptor)
     getBooks() {
         return this.ContentService.requestBooks();
     }
