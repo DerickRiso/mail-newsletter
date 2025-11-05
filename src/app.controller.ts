@@ -1,14 +1,15 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 import { AppService } from './app.service';
+import data from "../json/news.json";
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('root')
-  getHello(): string {
-    
-    return this.appService.getHello();
+  @Render('index')
+  getHello() {
+    return {data};
   }
 
 }

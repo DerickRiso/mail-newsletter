@@ -1,5 +1,13 @@
-p Hello. #{name}!
+html
+    head
 
-p Segue as notícias do dia! 
+    body
+        p Hello. #{name}!
+        p Segue as notícias do dia!
+        section
+            each item in data
+                h2= item.title
+                p= item.abstract
 
-p 
+
+

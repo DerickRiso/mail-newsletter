@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import data from "../../json/news.json";
 import * as nodemailer from "nodemailer";
 import * as pug from "pug";
 import * as path from "path";
@@ -20,7 +21,8 @@ export class MailService {
 
     const html = pug.renderFile(templatePath, {
       name: process.env.MAIL_FROM,
-      product: "Meu app"
+      product: "Meu app",
+      data 
     });
 
     const info = await transporter.sendMail({

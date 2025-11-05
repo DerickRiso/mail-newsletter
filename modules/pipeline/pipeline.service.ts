@@ -2,13 +2,12 @@ import { Injectable } from "@nestjs/common";
 import * as fs from "fs";
 import { ContentService } from "modules/content/content.service";
 import type { News, Word } from "../content/content.service"
-import { MailService } from "modules/email/mail.service";
+import { Cron } from "@nestjs/schedule";
 
 @Injectable()
 export class DataPipelineService {
     constructor(
-        private readonly content: ContentService,
-        private readonly mail: MailService
+        private readonly content: ContentService
     ) {}
 
     async executeJob() {
@@ -42,4 +41,8 @@ export class DataPipelineService {
         })
     }
 
+    @Cron('10 * * * * *')
+    public teste() {
+        console.log("Oi?");
+    }
 }

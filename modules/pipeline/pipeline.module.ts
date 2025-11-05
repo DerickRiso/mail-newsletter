@@ -1,12 +1,11 @@
 import { Module } from "@nestjs/common";
 import { ContentModule } from "modules/content/content.module";
-import { MailModule } from "modules/email/mail.module";
-import { PipelineService } from "./pipeline.service";
+import { DataPipelineService } from "./pipeline.service";
 
 @Module({
-    imports: [ContentModule, MailModule],
+    imports: [ContentModule],
     controllers: [],
-    providers: [PipelineService],
-    exports: [PipelineService]
+    providers: [DataPipelineService],
+    exports: [DataPipelineService]
 })
 export class PipelineModule {}

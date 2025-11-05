@@ -13,7 +13,7 @@ export class ContentController {
     constructor(private readonly ContentService: ContentService) {}
 
     @Get('news')
-    @UseInterceptors(TransformNewsInterceptor)
+    //@UseInterceptors(TransformNewsInterceptor)
     getNews() {
         return this.ContentService.requestNews();
     }
@@ -25,7 +25,7 @@ export class ContentController {
     }
 
     @Get('words')
-    @UseInterceptors(TransformWordsInterceptor)
+    //@UseInterceptors(TransformWordsInterceptor)
     getWords() {
         return this.ContentService.requestWord();
     }
