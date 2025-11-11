@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DataPipelineService } from 'modules/pipeline/pipeline.service';
+import { DataPipelineService } from '@modules/pipeline/pipeline.service';
 
 
 @Injectable()

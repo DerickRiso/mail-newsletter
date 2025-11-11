@@ -5,7 +5,7 @@ import {
     CallHandler
 } from "@nestjs/common";
 import { map, Observable } from "rxjs";
-import type { News, Word } from "modules/content/content.service";
+import type { News, Word } from "@modules/content/content.service";
 
 @Injectable()
 export class TransformNewsInterceptor implements NestInterceptor {

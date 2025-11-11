@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import * as fs from "fs";
-import { ContentService } from "modules/content/content.service";
-import type { News, Word } from "../content/content.service"
+import { ContentService } from "@modules/content/content.service";
+import type { News, Word } from "@modules/content/content.service"
 import { Cron } from "@nestjs/schedule";
 
 @Injectable()

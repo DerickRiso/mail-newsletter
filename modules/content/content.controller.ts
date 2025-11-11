@@ -4,7 +4,7 @@ import {
     TransformBooksInterceptor,
     TransformNewsInterceptor,
     TransformWordsInterceptor
-} from 'interceptors/transform.interceptor';
+} from '../../interceptors/transform.interceptor';
 
 
 
