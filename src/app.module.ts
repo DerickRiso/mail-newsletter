@@ -5,6 +5,7 @@ import { MailModule } from '@modules/email/mail.module';
 import { ContentModule } from '@modules/content/content.module';
 import { PipelineModule } from '@modules/pipeline/pipeline.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { DeliveryModule } from '@/modules/delivery/delivery.module';
 
 
 @Module({
@@ -12,6 +13,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     MailModule,
     ContentModule,
     PipelineModule,
+    DeliveryModule,
     //ScheduleModule.forRoot()
   ],
   controllers: [AppController],

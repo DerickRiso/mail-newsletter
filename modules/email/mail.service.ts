@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import data from "../../json/news.json";
+import data from "@/json/news.json";
 import * as nodemailer from "nodemailer";
 import * as pug from "pug";
 import * as path from "path";
