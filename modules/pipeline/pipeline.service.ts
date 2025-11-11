@@ -8,29 +8,34 @@ import { Cron } from "@nestjs/schedule";
 export class DataPipelineService {
     constructor(
         private readonly content: ContentService
-    ) {}
+    ) { }
 
+    //@Cron("10 * * * * *")
     async executeJob() {
-        // Faz requests para as APIs
-        const news = await this.content.requestNews();
-        const word = await this.content.requestWord();
+        try {
+            // Faz requests para as APIs
+            const news = await this.content.requestNews();
+            const word = await this.content.requestWord();
 
-        // Transforma os dados
-        const dataNews = await this.content.transformNewsData(news);
-        const dataWord = await this.content.transformWordData(word);
+            // Transforma os dados
+            const dataNews = await this.content.transformNewsData(news);
+            const dataWord = await this.content.transformWordData(word);
 
-        // Converte para json
-        this.transformToJson(dataNews.response, "news");
-        this.transformToJson(dataWord.response, "word");
-
+            // Converte para json
+            this.transformToJson(dataNews.response, "news");
+            this.transformToJson(dataWord.response, "word");
+        } catch (err) {
+            console.error("Erro ao executar job do pipeline", err);
+            return
+        }
         console.log("Trabalho feito");
     }
 
-    private transformToJson(data: News[] | Word, fileName: string ) {
+    private async transformToJson(data: News[] | Word, fileName: string) {
         const jsonData = JSON.stringify(data, null, 2);
         const path = `./json/${fileName}.json`;
 
-        this.writeFile(path, jsonData);
+        await this.writeFile(path, jsonData);
     }
 
     private writeFile(path: string, content: string) {
@@ -39,10 +44,5 @@ export class DataPipelineService {
                 console.error("Erro ao escrever arquivo", err)
             }
         })
-    }
-
-    @Cron('10 * * * * *')
-    public teste() {
-        console.log("Oi?");
     }
 }

@@ -12,7 +12,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     MailModule,
     ContentModule,
     PipelineModule,
-    ScheduleModule.forRoot()
+    //ScheduleModule.forRoot()
   ],
   controllers: [AppController],
   providers: [AppService],

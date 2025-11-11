@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('root')
-  @Render('index')
+  @Render('default')
   getHello() {
     return {data};
   }

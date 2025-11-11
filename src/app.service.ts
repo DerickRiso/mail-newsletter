@@ -9,7 +9,6 @@ export class AppService {
   ) {}
   getHello(): string {
     this.testPipe.executeJob();
-    this.testPipe.teste();
     return 'Hello World!';
   }
 }

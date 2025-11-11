@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.setViewEngine('pug');
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setBaseViewsDir(join(__dirname, "..", "..", "./src", 'templates'));
 
   app.enableCors({
     origin: "http://localhost:5173",
