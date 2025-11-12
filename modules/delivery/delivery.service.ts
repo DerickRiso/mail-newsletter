@@ -6,11 +6,17 @@ import word from "@/json/word.json";
 export class DeliveryService {
 
     deliveryNews() {
-        return news;
+        return {
+            sucess: true,
+            data: news
+        };
     }
 
     deliveryWord() {
-        return word;
+        return {
+            sucess: true,
+            data: word
+        };
     }
 
 

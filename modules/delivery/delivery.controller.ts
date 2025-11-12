@@ -10,7 +10,7 @@ export class DeliveryController {
         try {
             return this.deliveryService.deliveryNews();
         } catch {
-            return { error: "Erro ao obter notícias" };
+            return { error: "Erro no delivery de notícias" };
         }
     }
 
@@ -19,7 +19,7 @@ export class DeliveryController {
         try {
             return this.deliveryService.deliveryWord();
         } catch {
-            return { error: "Erro ao obter palavra do dia" };
+            return { error: "Erro no delivery de palavra" };
         }
     }
 }

@@ -80,7 +80,7 @@ export class ContentService {
     }
 
     async requestWord() {
-        const url = "https://api.dictionaryapi.dev/api/v2/entries/en/paper";
+        const url = "https://api.dictionaryapi.dev/api/v2/entries/en/happy";
         return makeRequest(url);
     }
 
