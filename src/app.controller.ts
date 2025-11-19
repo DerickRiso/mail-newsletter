@@ -10,9 +10,8 @@ export class AppController {
   ) { }
 
   @Get()
-  @Render('default') /* Isso deveria estar aqui? */
   getHello() {
-
+    return this.appService.getHello()
   }
 
   @Get('pipeline')
