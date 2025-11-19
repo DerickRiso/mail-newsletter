@@ -6,18 +6,24 @@ import word from "@/json/word.json";
 export class DeliveryService {
 
     deliveryNews() {
-        return {
-            sucess: true,
-            data: news
-        };
+        try {
+            return {
+                sucess: true,
+                data: news
+            };
+        } catch (error) {
+            console.error("Erro ao entregar notícias:", error);
+        }
     }
 
     deliveryWord() {
-        return {
-            sucess: true,
-            data: word
-        };
+        try {
+            return {
+                sucess: true,
+                data: word
+            };
+        } catch (error) {
+            console.error("Erro ao entregar palavra:", error);
+        }
     }
-
-
 }

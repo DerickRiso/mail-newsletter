@@ -7,20 +7,16 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly dataPipelineService: DataPipelineService
-  ) {}
+  ) { }
 
   @Get()
   @Render('default') /* Isso deveria estar aqui? */
   getHello() {
-  
+
   }
 
   @Get('pipeline')
   runDataPipeline() {
-    
     this.dataPipelineService.runDataPipeline();
   }
-
-
-
 }

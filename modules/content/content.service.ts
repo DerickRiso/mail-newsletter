@@ -57,42 +57,35 @@ export type Multimedia = {
     copyright: string;
 };
 
-
-async function makeRequest(url: string) {
-    try {
-        const response = await axios.get(url);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 @Injectable()
 export class ContentService {
-    async requestNews() {
-        const url = "https://api.nytimes.com/svc/news/v3/content/nyt/world.json?api-key=" + process.env.NYT_API_KEY;
-        return makeRequest(url);
-    }
-
-    async requestBooks() {
-        const url = "https://ia800204.us.archive.org/fulltext/inside.php?item_id?designevaluation25clin&doc-designevaluation25clin&path/27/items/designevaluation25cc&q-%22library%20science22";
-        return makeRequest(url);
-    }
-
-    async requestWord() {
-        const url = "https://api.dictionaryapi.dev/api/v2/entries/en/happy";
-        return makeRequest(url);
+    private async makeRequest(url: string) {
+        try {
+            const response = await axios.get(url);
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao fazer chamada para APIs externas:", error);
+        }
     }
 
     private removeVoidData(arr: News[]): News[] {
         return arr.filter(item => item.title !== "");
     }
 
-    // ATENÇÃO: Se formato de saída da API for modificado quebra o tipo da aplicação
-    async transformNewsData(data: NytApiResponse) {
-        const results = Array.isArray(data?.results) ? data.results : [];
+    async requestNews() {
+        const url = "https://api.nytimes.com/svc/news/v3/content/nyt/world.json?api-key=" + process.env.NYT_API_KEY;
+        return this.makeRequest(url);
+    }
 
-        const tempResponse: News[] = results.map((item, index) => ({
+    async requestWord() {
+        const url = "https://api.dictionaryapi.dev/api/v2/entries/en/happy";
+        return this.makeRequest(url);
+    }
+
+    async transformNewsData(data: NytApiResponse) {
+        const requestResults = Array.isArray(data?.results) ? data.results : [];
+
+        const tempResponse: News[] = requestResults.map((item, index) => ({
             key: index,
             title: item.title || "",
             abstract: item.abstract || "",
@@ -104,9 +97,8 @@ export class ContentService {
 
         return {
             sucess: true,
-            response
+            content: response
         }
-
     }
 
     async transformWordData(data: Word) {
@@ -120,7 +112,7 @@ export class ContentService {
 
         return {
             sucess: true,
-            response
+            content: response
         }
     }
 }

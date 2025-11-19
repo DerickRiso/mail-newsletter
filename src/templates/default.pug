@@ -1,13 +1,37 @@
 html
     head
+        style. 
+            * {
+                font-family: Arial, sans-serif;
+            }
 
+            body {
+                margin: 6vw;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .greetings {
+                font-weight: 500; 
+            }
+
+            .section {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 0px;
+            }
+
+            .title, .text {
+                margin: 15px 0px;
+            }
     body
-        p Hello. #{name}!
-        p Segue as notícias do dia!
-        section
-            each item in data
-                h2= item.title
-                p= item.abstract
+        p.greetings Hello #{name}! How's it going? A seguir, as notícias do dia!
+        section.section
+            each item in newsData
+                h2.title= item.title
+                p.text= item.abstract
 
 
 
